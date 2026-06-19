@@ -1,227 +1,98 @@
 "use client";
 
-import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { FaLinkedin } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
-import { GrGithub } from "react-icons/gr";
+import { useState } from "react";
+import Image from "next/image";
+import { FaBars, FaGithub, FaTimes } from "react-icons/fa";
+import { MdArrowOutward } from "react-icons/md";
+
+const navLinks = [
+  { label: "Home", href: "/#home" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Stack", href: "/#stack" },
+  { label: "Works", href: "/#works" },
+  { label: "Proof", href: "/#proof" },
+  { label: "Creator", href: "/#creator" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Navbar() {
-  const links = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    {
-      label: "Socials",
-      href: "#",
-      isDropdown: true,
-      subLinks: [
-        {
-          label: "Twitter",
-          href: "https://x.com/silent_dev87223",
-          icon: <FaXTwitter />,
-        },
-        {
-          label: "GitHub",
-          href: "https://github.com/Cassyboi16-dev",
-          icon: <GrGithub />,
-        },
-        {
-          label: "LinkedIn",
-          href: "https://www.linkedin.com/in/chukwuemeka-cas-akuchie-b359bb2bb/",
-          icon: <FaLinkedin />,
-        },
-      ],
-    },
-  ];
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const mobileRef = useRef(null);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-      if (mobileRef.current && !mobileRef.current.contains(event.target)) {
-        setMobileOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-black text-white">
-      <div className="max-w-4xl mx-auto flex items-center justify-between p-4">
-        <Link
-          href="/"
-          className="text-2xl flex font-bold tracking-wide hover:opacity-90"
-        >
-          Cassyboi
-          <span class="relative flex size-3">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-            <span class="relative inline-flex size-3 rounded-full bg-red-600"></span>
+    <header className="sticky top-0 z-50 border-b border-stone-950/10 bg-[#f8f3e8]/90 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-10">
+        <a href="/#home" className="flex items-center gap-3">
+          <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl border border-stone-950/10 bg-white shadow-sm">
+            <Image
+              src="/my-logo.png"
+              alt="Cassyboi logo"
+              width={44}
+              height={44}
+              className="h-full w-full object-cover"
+            />
           </span>
-        </Link>
+          <span>
+            <span className="block text-base font-black leading-tight text-amber-950">
+              Cassyboi
+            </span>
+            <span className="hidden text-xs font-bold uppercase tracking-wide text-emerald-700 sm:block">
+              Fullstack Developer
+            </span>
+          </span>
+        </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-2">
-          {links.map((link) => {
-            if (link.isDropdown) {
-              return (
-                <div key={link.label} ref={dropdownRef} className="relative">
-                  <button
-                    onClick={() => setDropdownOpen((s) => !s)}
-                    aria-expanded={dropdownOpen}
-                    className="uppercase text-sm px-4 py-2 hover:opacity-90 flex items-center gap-2"
-                  >
-                    {link.label.icon ? link.label.icon : link.label}
-                    <svg
-                      className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : "rotate-0"}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-
-                  {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-44 bg-white text-black rounded shadow-md overflow-hidden z-40">
-                      {link.subLinks.map((s) => (
-                        <a
-                          key={s.href}
-                          href={s.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm hover:bg-gray-100"
-                        >
-                          {s.label.icon ? s.label.icon : s.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="uppercase text-sm px-4 py-2 hover:opacity-90"
-              >
-                {link.label.icon ? link.label.icon : link.label}
-              </Link>
-            );
-          })}
+        <div className="hidden items-center gap-1 rounded-full border border-stone-950/10 bg-white/70 p-1 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-4 py-2 text-sm font-bold text-stone-600 transition hover:bg-amber-950 hover:text-white"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
 
-        {/* Mobile toggle */}
-        <div className="md:hidden" ref={mobileRef}>
-          <button
-            onClick={() => setMobileOpen((s) => !s)}
-            aria-label="Toggle menu"
-            className="p-2 rounded hover:bg-white/10"
+        <div className="flex items-center gap-2">
+          <a
+            href="https://github.com/Cassyboi16-dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-950 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-amber-950/15 transition hover:-translate-y-0.5 hover:bg-stone-950"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            <FaGithub />
+            <span className="hidden sm:inline">GitHub</span>
+            <MdArrowOutward className="hidden text-base sm:block" />
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((current) => !current)}
+            aria-expanded={isMenuOpen}
+            aria-label="Toggle navigation menu"
+            className="grid h-10 w-10 place-items-center rounded-lg border border-stone-950/10 bg-white text-amber-950 shadow-sm md:hidden"
+          >
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-black border-t border-white/5">
-          <div className="max-w-4xl mx-auto flex flex-col p-4 gap-1">
-            {links.map((link) => {
-              if (link.isDropdown) {
-                return (
-                  <div key={link.label}>
-                    <button
-                      onClick={() => setDropdownOpen((s) => !s)}
-                      className="w-full text-left uppercase px-3 py-2 flex items-center justify-between"
-                    >
-                      {link.label.icon ? (
-                        link.label.icon
-                      ) : (
-                        <span>{link.label}</span>
-                      )}
-                      <svg
-                        className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : "rotate-0"}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-
-                    {dropdownOpen && (
-                      <div className="pl-4">
-                        {link.subLinks.map((s) => (
-                          <a
-                            key={s.href}
-                            href={s.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-3 py-2 text-sm hover:bg-white/5 rounded"
-                          >
-                            {s.label.icon ? s.label.icon : s.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="uppercase px-3 py-2"
-                >
-                  {link.icon ? link.icon : link.label}
-                </Link>
-              );
-            })}
+      {isMenuOpen && (
+        <div className="border-t border-stone-950/10 bg-[#f8f3e8] px-5 py-4 shadow-xl shadow-stone-950/10 md:hidden">
+          <div className="mx-auto grid max-w-7xl gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-xl border border-stone-950/10 bg-white px-4 py-3 text-sm font-black text-stone-700 transition hover:border-emerald-700/40 hover:text-amber-950"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }
