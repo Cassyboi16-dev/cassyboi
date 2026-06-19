@@ -151,6 +151,7 @@ const works = [
     liveUrl: "https://bugreview.online",
     githubUrl: "https://github.com/Cassyboi16-dev",
     tags: ["Next.js", "Tailwind", "Responsive"],
+    MessageComponent: "The Site is currently under construction, but you can view the code on GitHub.",
   },
 ];
 
