@@ -5,6 +5,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { RiNextjsLine, RiTailwindCssFill } from "react-icons/ri";
 import { SiReact, SiVercel } from "react-icons/si";
 
+
 const socialLinks = [
   {
     label: "GitHub",
@@ -99,7 +100,11 @@ export default function Footer() {
           Cassyboi
         </a>
         .
+        <a href="../privacy" className="p-2 hover:text-emerald-600">Privacy Policy</a> All rights reserved.
+        <a href="../terms" className="p-2 hover:text-emerald-600">Terms of Service</a>
+        and © {new Date().getFullYear()}.
       </div>
     </footer>
   );
-}
+}   
+     
