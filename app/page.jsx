@@ -102,8 +102,8 @@ const showcases = [
     title: "Content Creation",
     Icon: FaPlay,
     summary:
-      "I also create developer content, tutorials, and visual stories for YouTube and TikTok.",
-    proof: ["80+ YouTube subscribers", "Tutorial style", "Film-making eye"],
+      "I also create content and visual stories for YouTube and TikTok.",
+    proof: ["80+ YouTube subscribers", "Film-making eye"],
   },
 ];
 
@@ -116,10 +116,10 @@ const featuredBuilds = [
     tags: ["Next.js", "React", "Tailwind"],
   },
   {
-    name: "Learning Content",
-    type: "Developer education",
+    name: "Content Creation",
+    type: "Christian Content & Filmaking",
     description:
-      "Tutorial-focused content that explains web development with practical, beginner-friendly examples.",
+      "I Create content surrounding God's Word and have made a short film and plan to make more in the future",
     tags: ["YouTube", "TikTok", "Teaching"],
   },
   {
@@ -146,11 +146,11 @@ const works = [
     title: "BugReview",
     type: "Developer site",
     description:
-      "A developer-focused site for sharing insights and reviews about software bugs. PS - The Site is underconstuction.",
+      "A developer-focused site for sharing insights and reviews about software bugs. PS- Site Underconstruction",
     previewUrl: "https://bugreview.online",
     liveUrl: "https://bugreview.online",
     githubUrl: "https://github.com/Cassyboi16-dev",
-    tags: ["Next.js", "Tailwind", "Responsive"],
+    tags: ["Next.js", "Tailwind", "Responsive", "Site Underconstruction"],
   },
 ];
 
@@ -206,10 +206,10 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg lg:mx-0">
-            I&apos;m Cassyboi, a fullstack web developer from{" "}
-            <span className="font-black text-emerald-700">Nigeria</span>. I
+            I'm Cassyboi, a fullstack web developer from{" "}
+            <span className="font-black text-emerald-700 lg:text-2xl">Nigeria</span>. I
             create websites, app interfaces, and digital experiences with React,
-            Next.js, Tailwind, Node.js, and Firebase. I also share what I learn
+            Next.js, Tailwind, Node.js, and Firebase. I also enjoy creating
             through YouTube and TikTok content.
           </p>
 
@@ -283,25 +283,22 @@ export default function Home() {
                   key={item.title}
                   type="button"
                   onClick={() => setActiveShowcase(index)}
-                  className={`flex w-full items-center gap-4 rounded-xl border p-4 text-left transition ${
-                    isActive
+                  className={`flex w-full items-center gap-4 rounded-xl border p-4 text-left transition ${isActive
                       ? "border-amber-950 bg-amber-950 text-white shadow-xl shadow-amber-950/15"
                       : "border-stone-950/10 bg-white text-stone-800 hover:-translate-y-0.5 hover:border-emerald-700/40"
-                  }`}
+                    }`}
                 >
                   <span
-                    className={`grid h-12 w-12 shrink-0 place-items-center rounded-lg ${
-                      isActive ? "bg-white/15" : "bg-[#f8f3e8]"
-                    }`}
+                    className={`grid h-12 w-12 shrink-0 place-items-center rounded-lg ${isActive ? "bg-white/15" : "bg-[#f8f3e8]"
+                      }`}
                   >
                     <Icon className="text-xl" />
                   </span>
                   <span>
                     <span className="block font-black">{item.title}</span>
                     <span
-                      className={`mt-1 block text-sm ${
-                        isActive ? "text-white/75" : "text-stone-500"
-                      }`}
+                      className={`mt-1 block text-sm ${isActive ? "text-white/75" : "text-stone-500"
+                        }`}
                     >
                       {item.summary}
                     </span>
@@ -528,10 +525,10 @@ export default function Home() {
           </h2>
           <p className="mt-5 text-base leading-8 text-stone-700">
             My content creation side helps me communicate clearly, think in
-            stories, and showcase my web development skills.
+            stories.
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-2">
             <a
               href="https://www.youtube.com/@cassyboi16"
               target="_blank"
@@ -570,9 +567,9 @@ export default function Home() {
             width={800}
             height={450}
             className="aspect-video w-full object-cover gap-1 rounded-2xl border border-stone-950/10 bg-[#f8f3e8] p-3 shadow-2xl shadow-stone-950/15"
-        /></a>
+          /></a>
 
-        
+
       </section>
     </main>
   );

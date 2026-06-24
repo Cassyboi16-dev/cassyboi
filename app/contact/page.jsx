@@ -7,7 +7,7 @@ const emailAddress = "cassyboi16@proton.me";
 const emailHref = `mailto:${emailAddress}?subject=${encodeURIComponent(
   "Project inquiry from your portfolio",
 )}&body=${encodeURIComponent(
-  "Hi Cassyboi,\n\nI saw your portfolio and would like to talk about ",
+  "Hi Cassyboi,\n\nI saw your portfolio and would like to talk about",
 )}`;
 
 export default function Contact() {
